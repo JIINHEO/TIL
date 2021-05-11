@@ -105,12 +105,12 @@ let subtracting: Set<Int> = setA.subtracting(setB)//{2,1} 차집합
 ## 함수
 ### 함수의 선언
 ```
-// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> 반환타입 {
-//  함수 구현부
-//  return 반환값
-// }
-
-
+func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> 반환타입 {
+  함수 구현부
+  return 반환값
+ }
+```
+```
 func sum(a: Int, b: Int) -> Int {
   return a + b
 }
@@ -118,11 +118,12 @@ func sum(a: Int, b: Int) -> Int {
 
 ### 반환 값이 없는 함수
 ```
-// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> void {
-// 함수 구현부
-// return
-// }
-
+ func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> void {
+   함수 구현부
+  return
+ }
+```
+```
 func printMyName(name: String) -> Void {
 print(name)
 ```
@@ -130,11 +131,12 @@ print(name)
 
 ### 매개변수가 없는 함수
 ```
-// func 함수이름() -> 반환타입 {
-// 함수 구현부
-// return 반환값
-// }
- 
+func 함수이름() -> 반환타입 {
+  함수 구현부
+ return 반환값
+ }
+```
+```
 func maximumIntegerValue() -> Int {
   return Int.max
  }
@@ -142,11 +144,12 @@ func maximumIntegerValue() -> Int {
 
 ### 매개변수와 반환값이 없는 함수
 ```
-// func 함수이름() -> void {
-// 함수 구현부
-// return
-// }
-
+func 함수이름() -> void {
+  함수 구현부
+ return
+ }
+```
+```
 func hello() -> void { print("hello") }
 ```
 
@@ -163,11 +166,12 @@ hello() //hello
 > 매개변수에 기본적으로 전달될 값을 미리 지정해 둘 수 있습니다.  
 > 기본값을 갖는 매개변수는 애배견수 목록 중 뒤쪽에 위치하는 것이 좋습니다.   
 ```
-// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 = 매개변수 기본값 ...) -> 반환타입 {
-// 함수 구현부
-// return 반환값
-// }
-
+func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 = 매개변수 기본값 ...) -> 반환타입 {
+  함수 구현부
+ return 반환값
+ }
+```
+```
 func greeting(friend: String, me: String = "jiin") {
   print("Hellog \(friend)! I'm \(me)")
 }
@@ -180,11 +184,12 @@ greeting(frieng: "john", me: "eric") //Hello john! I'm eric
 > 함수를 호출할 때 함수 사용자의 입장에서 매개변수의 역할을 좀 더 명확하게 표현하고자 할 때 사용합니다.  
 > 전달인자 레이블은 변경하여 동일한 이름의 함수를 중복으로 생성 가능합니다.
 ```
-// func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
-// 함수구현부 
-// return
-// }
-
+func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
+  함수구현부 
+ return
+ }
+```
+```
 //함수 내부에서 전달인자를 사용할 때에는 매개변수 이름을 사용합니다.
 func greeting(to friend: String, from me: String) {
   print("Hello \(friend)! I'm \(me)")
@@ -199,11 +204,12 @@ func greeting(to friend: String, from me: String) {
 > 가변 매개변수는 함수당 하나만 가질 수 있습니다.  
 > 기본값이 있는 매개변수와 같이 가변 매개변수 역시 매개변수 목록 중 뒤쪽에 위치하는 것이 좋습니다.
 ```
-/ func 함수이름(매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
-//    /* 함수 구현부 */
-//    return
-// }
-
+func 함수이름(매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
+    /* 함수 구현부 */
+  return
+ }
+```
+```
 func sayHelloToFriends(me: String, friends: String...) -> String {
     return "Hello \(friends)! I'm \(me)!"
 }
@@ -211,8 +217,325 @@ func sayHelloToFriends(me: String, friends: String...) -> String {
 print(sayHelloToFriends(me: "jiin", friends: "hana", "eric", "wing"))
 // Hello ["hana", "eric", "wing"]! I'm jiin!
 
-print(sayHelloToFriends(me: "jiin"))
+print(sayHelloToFriends(me: "jiin")) //가변인자에 아무것도 넣고싶지 않으면 전달인자 레이블을 생략해버리면 된다. 
 // Hello []! I'm jiin!
 ```
-### 데이터 
+### 데이터 타입으로서의 함수
+> 스위프트는 함수형 프로그래밍 패러다임을 포함하는 다중 패러다임 언어이므로 스위프트의 함수는 일급 객체입니다.   
+> 그래서 함수를 변수, 상수 등에 할당이 가능하고 매개변수를 통해 전달할 수도 있습니다.   
+> 함수의 타입 표현 : 반환 타입을 생략할 수 없습니다.
+```
+(매개변수1타입, 매개변수2타입...) -> 반환타입
+
+함수타입 사용
+var someFunction:(String, String) -> Void = greeting(to:from:)
+someFunction("eric","jiin") //Hello eric! I'm jiin
+
+someFunction = greeting(friend:me:)
+someFunction("eric", "jiin") // Hello eric! I'm jiin
+
+
+// 타입이 다른 함수는 할당할 수 없습니다 - 컴파일 오류 발생
+//someFunction = sayHelloToFriends(me: friends:)
+
+
+func runAnother(function: (String, String) -> Void) { //함수 타입을 매개변수 타입으로 지정해주면 function 을 안에서도 실행해줄 수 있다. 
+    function("jenny", "mike")
+}
+
+// Hello jenny! I'm mike
+runAnother(function: greeting(friend:me:))
+
+// Hello jenny! I'm mike
+runAnother(function: someFunction)
+```
+
+## 조건문
+
+### if-else 구문
+```
+if 조건 {           //소괄호 생략 가능, 중괄호 생략 불가능
+     /* 실행 구문 */
+} else if 조건 {
+    /* 실행 구문 */
+} else {
+    /* 실행 구문 */
+}
+```
+```
+let someInteger = 100
+
+if someInteger < 100 {
+    print("100 미만")
+} else if someInteger > 100 {
+    print("100 초과")
+} else {
+    print("100")
+} // 100
+
+// 스위프트의 조건에는 항상 Bool 타입이 들어와야 합니다.
+// someInteger는 Bool 타입이 아닌 Int 타입이기 때문에
+// 컴파일 오류가 발생합니다.
+//if someInteger { }
+```
+
+### switch 구문
+> 매우 한정적인 값(ex. enum의 case 등)이 비교값이 아닌 한 default 구문은 반드시 작성해야 합니다.   
+> 명시적으로 break를 하지 않아도 자동으로 case 마다 break 됩니다.   
+> fallthrough 키워드를 사용하여 break를 무시할 수 있습니다.    
+> 쉼표(,)를 사용하여 하나의 case 에 여러 패턴을 명시할 수 있습니다.
+```
+switch 비교값 {
+case 패턴:
+    /* 실행 구문 */
+default:
+    /* 실행 구문 */
+}
+``` 
+```
+// 범위 연산자를 활용하면 더욱 쉽고 유용합니다
+switch someInteger {
+case 0:
+    print("zero")
+case 1..<100:
+    print("1~99")
+case 100:
+    print("100")
+case 101...Int.max: //이상, 이하 ...-> 포함한다는거 
+    print("over 100")
+default:
+    print("unknown")
+} // 100
+
+// 정수 외의 대부분의 기본 타입을 사용할 수 있습니다
+switch "jiin" {
+case "jake", "mina":
+    print("jake, mina")
+case "jiin":
+    print("jiin!!")
+default:
+    print("unknown")
+} // jiin!!
+```
+<br>
+
+## 반복문
+
+### for-in 구문
+> 기존 언어의 for-each구문과 유사합니다.   
+> Dictionary의 경우 이터레이션 아이템으로 튜플이 들어옵니다.
+```
+for item in items{
+ /* 실행 구문*/
+```
+```
+var integers = [1, 2, 3]
+let people = ["yagom": 10, "eric": 15, "mike": 12]
+
+for integer in integers {
+    print(integer)
+}
+
+// Dictionary의 item은 key와 value로 구성된 튜플 타입입니다
+for (name, age) in people {
+    print("\(name): \
+    (age)")
+}
+```
+### While 구문
+```
+while 조건 {
+    /* 실행 구문 */
+}
+```
+```
+while integers.count > 1 { //소괄호 생략 가능, 꼭 bool 값이 들어와야함 (while 1 안됨)   
+    integers.removeLast()
+}
+```
+### repeat-while 구문
+> 기존 언어의 do-while 구문과 형태/동작이 유사합니다.
+```
+repeat {
+    /* 실행 구문 */
+} while 조건
+```
+```
+repeat { //do 라는 키워드를 쓰지 않는 이유는 do는 swift 의 오류 처리 구문에 사용되기 때문이다. 
+    integers.removeLast()
+} while integers.count > 0
+```
+
+<br>
+
+## 옵셔널
+
+### 옵셔널이란??
+> 값이 있을 수도, 없을 수도 있음을 표현  
+> nil이 할당 될 수 있는지 없는지 표현 
+```
+// someOptionalParm에 nil이 할당 될 수 있다.
+func someFunction(someOptionalParam: Int?) {
+       // ....
+}
+
+/// someOptionalParm에 nil이 할당 될 수 없다.
+func someFunction(someOptionalParam: Int) {
+       // ....
+}
+
+someFunction(someOptionalParam: nil)
+// someFunction(someParam: nil) 
+```
+
+### 옵셔널을 쓰는 이유
+> 명시적 표현
+>> 1. nil의 가능성을 코드만으로 표현 가능
+>> 2. 문서/주석 작성 시간 절약 
+
+> 안전한 사용
+>> 1. 전달받은 값이 옵셔널이 아니라면 nil 체크를 하지 않고 사용 가능
+>> 2. 예외 상황을 최소화 하는 안전한 코딩
+>> 3. 효율적 코딩 
+
+### 옵셔널 문법과 선언
+> 옵셔널 문법 = enum + generics
+```
+옵셔널 선언
+
+enum Optional<Wrapped>: ExpressibleByNiliteral {
+         case none
+         case some(Wrapped)
+}
+
+let optionalValue: Optional<Int> = nil
+let optionalValue: Int? =nil
+```
+
+### 옵셔널 표현  
+#### 1. 느낌표(!)를 이용한 암시적 추출 옵셔널
+```
+// Implicitly Unwrapped Optional
+var implicitlyUnwrappedOptionalValue: Int! = 100
+
+switch implicitlyUnwrappedOptionalValue {
+case .none:
+    print("This Optional variable is nil")
+case .some(let value):
+    print("Value is \(value)")
+}
+
+// 기존 변수처럼 사용 가능
+implicitlyUnwrappedOptionalValue = implicitlyUnwrappedOptionalValue + 1
+
+// nil 할당 가능
+implicitlyUnwrappedOptionalValue = nil
+
+// 잘못된 접근으로 인한 런타임 오류 발생(nil값을 넣어줬는데 접근하려다 보니)
+// 옵셔널과 일반 값은 다른 타입이므로 연산불가 
+//implicitlyUnwrappedOptionalValue = implicitlyUnwrappedOptionalValue + 1
+```
+
+#### 2. 물음표(?)를 이용한 옵셔널
+```
+// Optional
+var optionalValue: Int? = 100
+
+switch optionalValue {
+case .none:
+    print("This Optional variable is nil")
+case .some(let value):
+    print("Value is \(value)")
+}
+
+// nil 할당 가능
+optionalValue = nil
+
+// 기존 변수처럼 사용불가 - 옵셔널과 일반 값은 다른 타입이므로 연산불가
+//optionalValue = optionalValue + 1
+```
+### 옵셔널 추출 
+
+#### 1. 옵셔널 추출이란? (Optional Unwrapping) 
+> 옵셔널에 들어있는 값을 사용하기 위해 꺼내오는 것
+
+#### 2. 옵셔널 방식
+> 옵셔널 바인딩 (Optional Binding)
+>> 1. nil 체크 + 안전한 추출
+>> 2. 옵셔널 안에 값이 들어있는지 확인하고 값이 있으면 값을 꺼내옴
+>> 3. if-let 방식 사용
+```
+func printName(_ name: String) {
+    print(name)
+}
+
+var myName: String? = nil
+
+//printName(myName)
+// 전달되는 값의 타입이 다르기 때문에 컴파일 오류발생
+
+if let name: String = myName {
+    printName(name)
+} else {
+    print("myName == nil")
+}
+
+
+var yourName: String! = nil
+
+if let name: String = yourName {
+    printName(name)
+} else {
+    print("yourName == nil")
+}
+
+// name 상수는 if-let 구문 내에서만 사용가능합니다
+// 상수 사용범위를 벗어났기 때문에 컴파일 오류 발생
+//printName(name)
+
+// ,를 사용해 한 번에 여러 옵셔널을 바인딩 할 수 있습니다
+// 모든 옵셔널에 값이 있을 때만 동작합니다
+myName = "jiin"
+yourName = nil
+
+if let name = myName, let friend = yourName {
+    print("\(name) and \(friend)")
+}
+// yourName이 nil이기 때문에 실행되지 않습니다
+
+yourName = "hana"
+if let name = myName, let friend = yourName { //myName, yourName 모두 값이 들어있어야 if-let 구문이 실행 가능하다.
+    print("\(name) and \(friend)")
+}
+// jiin and hana
+```
+> 강제 추출 (Force Unwrapping)  
+>> 옵셔널에 값이 들어있는지 아닌지 확인하지 않고 강제로 값을 꺼내는 방식, 만약 값이 없을경우(nil)런타임 오류가 발생하기 떄문에 추천되지 않습니다.
+```
+var myName: String? = "jiin"
+var youName: String! = nil
+  
+
+printName(myName!) // jiin
+myName = nil
+
+//print(myName!)
+// 강제추출시 값이 없으므로 런타임 오류 발생
+yourName = nil
+
+//printName(yourName)
+// nil 값이 전달되기 때문에 런타임 오류발생 
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
