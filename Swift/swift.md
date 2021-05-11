@@ -100,20 +100,119 @@ let intersection: Set<Int> = setA.intersection(setB)//{5,3,4} 교집합
 let subtracting: Set<Int> = setA.subtracting(setB)//{2,1} 차집합
 ```
 
+<br>
+
+## 함수
+### 함수의 선언
+```
+// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> 반환타입 {
+//  함수 구현부
+//  return 반환값
+// }
 
 
+func sum(a: Int, b: Int) -> Int {
+  return a + b
+}
+```
+
+### 반환 값이 없는 함수
+```
+// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> void {
+// 함수 구현부
+// return
+// }
+
+func printMyName(name: String) -> Void {
+print(name)
+```
 
 
+### 매개변수가 없는 함수
+```
+// func 함수이름() -> 반환타입 {
+// 함수 구현부
+// return 반환값
+// }
+ 
+func maximumIntegerValue() -> Int {
+  return Int.max
+ }
+```
 
+### 매개변수와 반환값이 없는 함수
+```
+// func 함수이름() -> void {
+// 함수 구현부
+// return
+// }
 
+func hello() -> void { print("hello") }
+```
 
+### 함수의 호출
+```
+sum(a: 3, b: 5) //8
+printMyName(name: "jiin") //jiin
+printYourName(name: "jiin") //jiin
+maximumIntegerValue() //Int의 최댓값
+hello() //hello
+```
 
+### 매개변수 기본 값
+> 매개변수에 기본적으로 전달될 값을 미리 지정해 둘 수 있습니다.  
+> 기본값을 갖는 매개변수는 애배견수 목록 중 뒤쪽에 위치하는 것이 좋습니다.   
+```
+// func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 = 매개변수 기본값 ...) -> 반환타입 {
+// 함수 구현부
+// return 반환값
+// }
 
+func greeting(friend: String, me: String = "jiin") {
+  print("Hellog \(friend)! I'm \(me)")
+}
 
+greeting(friend: "hana") //Hello hana! I'm jiin
+greeting(frieng: "john", me: "eric") //Hello john! I'm eric
+```
 
+### 전달인자 레이블(Argument Label)
+> 함수를 호출할 때 함수 사용자의 입장에서 매개변수의 역할을 좀 더 명확하게 표현하고자 할 때 사용합니다.  
+> 전달인자 레이블은 변경하여 동일한 이름의 함수를 중복으로 생성 가능합니다.
+```
+// func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
+// 함수구현부 
+// return
+// }
 
+//함수 내부에서 전달인자를 사용할 때에는 매개변수 이름을 사용합니다.
+func greeting(to friend: String, from me: String) {
+  print("Hello \(friend)! I'm \(me)")
+ }
+ 
+ //함수를 호출할 때에는 전달인자 레이블을 사용해야 합니다.
+ greeting(to: "hana", from: "jiin") //Hello hana! I'm jiin
+```
 
+### 가변 매개변수
+> 전달 받을 값의 개수를 알기 어려울 때 사용합니다.  
+> 가변 매개변수는 함수당 하나만 가질 수 있습니다.  
+> 기본값이 있는 매개변수와 같이 가변 매개변수 역시 매개변수 목록 중 뒤쪽에 위치하는 것이 좋습니다.
+```
+/ func 함수이름(매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) -> 반환타입 {
+//    /* 함수 구현부 */
+//    return
+// }
 
+func sayHelloToFriends(me: String, friends: String...) -> String {
+    return "Hello \(friends)! I'm \(me)!"
+}
 
+print(sayHelloToFriends(me: "jiin", friends: "hana", "eric", "wing"))
+// Hello ["hana", "eric", "wing"]! I'm jiin!
 
+print(sayHelloToFriends(me: "jiin"))
+// Hello []! I'm jiin!
+```
+### 데이터 
 
