@@ -526,8 +526,9 @@ yourName = nil
 //printName(yourName)
 // nil 값이 전달되기 때문에 런타임 오류발생 
 ```
-
 <br>
+
+
 ## 구조체
 
 ### 1. 구조체란? 
@@ -545,13 +546,168 @@ struct 이름 {
 > 구조채 프로퍼티 및 메서드 구현
 ```
 strut Sample{
-var mutableProperty: Int = 100 //가변 프로퍼티(
+
+  //인스턴스 프로퍼티
+  var mutableProperty: Int = 100 //가변 프로퍼티(값 변경 가능)
+  let immutabelProperty: Int = 100 //불변 프로퍼티(값 변경 불가능)
+  
+  static var typeProperty: Int = 100 //타입 프로퍼티(static 키워드 사용: 타입 자체가 사용하는 프로퍼티)
+
+  //인스턴스 메서드(인스턴스가 사용하는 메서드)
+  func instanceMethod(){
+     print("instacne method")
+  }
+ 
+  //타입 메서드(static 키워드 사용: 타입 자체가 사용하는 메서드)
+  static func typeMethod(){
+   print("type method")
+    }
+ }
 
 ```
+> 구조체 사용
+```
+// 가변 인스턴스 생성
+var mutable: Sample = Sample()
+
+mutable.mutableProperty = 200
+
+// 불변 프로퍼티는 인스턴스 생성 후 수정할 수 없습니다
+// 컴파일 오류 발생
+//mutable.immutableProperty = 200
+
+// 불변 인스턴스
+let immutable: Sample = Sample()
+
+// 컴파일 오류 발생: 불변 인스턴스는 아무리 가변 프로퍼티라도 인스턴스 생성 후에 수정할 수 없습니다
+//immutable.mutableProperty = 200
+//immutable.immutableProperty = 200
 
 
+// 타입 프로퍼티 및 메서드 (구조체 타입 자체가 사용할 수 있는 프로퍼티 및 메서드 
+Sample.typeProperty = 300
+Sample.typeMethod() // type method
+
+// 컴파일 오류 발생: 인스턴스에서는 타입 프로퍼티나 타입 메서드를 사용할 수 없습니다
+//mutable.typeProperty = 400
+//mutable.typeMethod()
+```
+#### 학생 구조체 만들어보기
+```
+struct Student{
+
+  var name: String = "unknown"
+  var `class`: String = "Swift" //키워드도 `로 묶어주면 이름으로 사용할 수 있다.
+  
+  static func selfIntroduce(){
+    print("학생타입입니다")
+  }
+  
+  func selfIntroduce(){
+    print("저는 \(self.class)반 \(name)입니다.")
+  }
+}
+
+//타입 메서드 사용
+Student.selfIntroduce()// 학생타입입니다.
+
+//가변 인스턴스 생성
+var jiin: Student = Student()
+jiin.name = "jiin"
+jiin.class = "스위프트"
+jiin.selfIntroduce() //저는 스위프트반 jiin입니다
+
+//불변 인스턴스 생성
+let jay: Student = Student() 
+
+//불변 인스턴스이므로 프로퍼티값 변경 불가
+//컴파일 오류 발생
+//jay.name = "jay"
+
+jay.selfIntroduce() //저는 Swift반 unknown입니다
+
+```
+<br>
 
 
+## 클래스
+### 클래스란?
+> 클래스는 참조(reference)타입입니다. 
+> 타입 이름은 대문자 카멜케이스를 사용하여 정의합니다.
+> Swift의 클래스는 다중 상속이 되지 않습니다.
+
+### 클래스 문법
+> 정의 "class"키워드 사용
+```
+class 이름 {
+  /* 구현부 */
+}
+```
+> 프로퍼티 및 메서드 구현
+```
+class Sample{
+  var mutableProperty: Int = 100  //가변 프로퍼티
+  
+  let immutableProperty: Int = 100  //불변 프로퍼티
+  
+  static var typeProperty: Int = 100 //타입 프로퍼티
+  
+  func instanceMethod(){ //인스턴스 메서드 
+    print("instance method")
+  }
+  
+  //타입 메서드
+  //상속시 재정의 불가 타입 메서드 - static
+  static func typeMethod(){
+    print("type method - static")
+   }
+   
+   class func classMethod(){
+    print("type method - class")
+   }
+}
+```
+> 클래스 사용
+```
+var mutableReference: Sample = Sample()
+
+mutableReference.mutablePropery = 200
+
+//컴파일 오류 발생: 불변 프로퍼티는 인스턴스 생성 후 수정할 수 없습니다.
+//mutableReference.immutableProperty = 200
+
+//인스턴스 생성 - 참조정보 수정 불가 
+let immutableReference: Sample = Sample()
+
+//클래스의 인스턴스는 참조 타입이므로 let으로 선언되었더라도 인스턴스 프로퍼티의 값 변경이 가능합니다.
+immutableReference.mutableProperty = 200
+
+//컴파일 오류 발생: 다만 참조정보를 변경할 수 는 없습니다.
+//immutableReferene = mutableReference
+
+//컴파일 오류 발생: 참조 타입이라도 불변 인스턴스는 인스턴스 생성 후에 수정할 수 없습니다. 
+//immutableReference.immutableProperty = 200
+
+//타입 프로퍼티 및 메서드
+Sample.typeProperty = 300
+Sample.typeMeyhod() //type method
+
+//컴파일 오류 발생: 인스턴스에서 타입 프로퍼티나 타입 메서드를 사용할 수 없습니다.
+//mutableReference.typeProperty = 400
+//mutableReference.typeMethod()
+```
+
+> 학생 클래스 만들어 보기
+```
+class Student{
+  var name: String = "unknown"
+  var `class`: String = "Swift"
+  
+  //타입 메서드
+  class func selfIntroduce(){
+  print(학생타입입니다.
+  
+```
 
 
 
