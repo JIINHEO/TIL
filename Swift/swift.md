@@ -953,5 +953,13 @@ calculated = calculate(a: 50, b: 10, method: { (left: Int, right: Int) -> Int in
 
 
 print(calculated)
-
 ```
+
+
+
+
+
+
+
+
+
