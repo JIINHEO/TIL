@@ -1668,5 +1668,313 @@ doSometing(someone: mike) // 멤버쉽 트레이닝을 갑니다.
 doSometing(someone: jenny) // 등교를 합니다.
 doSometing(someone: jiin) // 숨을 쉽니다.
 ```
+<br>
+
+
+## assert / guard 
+### 1. Assertion
+> assert(_:_:file:line:) 함수를 사용합니다.   
+> assert 함수는 디버깅 모드에서만 동작합니다.   
+> 배포하는 애플리케이션에서는 제외됩니다.   
+> 예상했던 조건의 검증을 위하여 사용합니다. 
+```
+var someInt: Int = 0
+
+//검증 조건과 실패시 나타날 문구를 작성해 줍니다.
+//검증 조건에 부합하므로 지나갑니다.
+assert(someInt == 0, "someInt! = 0")
+
+someInt = 1
+//assert(someInt == 0) // 동작 중지, 검증 실패
+//assert(someInt ==0, "someInt != 0"// 동작 중지, 검증 실패
+//assertion failed: someInt != 0: file guard_assert.swift, line 26
+
+func functionWithAssert(age: Int?){
+    
+    assert(age != nil, "age == nil")
+    
+    assert((age! >= 0) && (age! <= 130), "나이값 입력이 잘못되었습니다.")
+    print("당신의 나이는 \(age!)세 입니다.")
+}
+
+functionWithAssert(age: 50) //당신의 나이는 50세 입니다.
+```
+
+### 2. guard(빠른종료 - Early Exit)
+> guard를 사용하여 잘못된 값의 전달 시 특정 실행구문을 빠르게 종료합니다.
+> 디버깅 모드 뿐만 아니라 어떤 조건에서도 동자갑니다.
+> guard의 else 블럭 내부에는 특정 코드블럭을 종료하는 지시어(return, break 등)가 꼭 있어야 합니다. 
+> 타입 캐스팅, 옵셔널과도 자주 사용됩니다.
+> 그 외에도 단순 조건 판단 후 빠르게 종료할 때도 용이합니다.
+```
+func functionWithGuard(age: Int?){
+    guard let unwrappedAge = age,
+    unwrappedAge < 130,
+    unwrappedAge >= 0 else{
+        print("나이값 입력이 잘못되었습니다.")
+        return
+    }
+    
+    print("당신의 나이는 \(unwrappedAge)세 입니다.")
+}
+
+var count = 1
+
+while true {
+    guard count < 3 else {
+        break
+    }
+    print(count)
+    count += 1
+}
+//1
+//2
+
+func someFunction(info: [String: Any]){
+    guard let name = info ["name"] as? String else {
+        return
+    }
+    
+    guard let age = info ["age"] as? Int, age >= 0  else {
+        return
+    }
+    
+    print("\(name): \(age)")
+}
+
+someFunction(info: ["name" : "jenny", "age": "10"])
+someFunction(info: ["name" : "mike"])
+someFunction(info: ["name" : "jiin", "age": 10]) //jiin: 10
+```
+<br>
+
+
+## 프로토콜 
+### 1. 프로토콜
+> 프로토콜(Protocol)은 특정 역할을 수행하기 위한 메서드, 프로퍼티, 기타 요구사항 등의 청사진을 정의합니다.   
+> 구조체, 클래스, 열거형은 프로토콜을 채택(Adopted)해서 트겅 기능을 수행하기 위한 프로토콜의 요구사항을 실제로 구현할 수 있습니다.   
+> 어떤 프로토콜의 요구사항을 모두 따르는 타입은 그 프로토콜을 준수한다고 표현합니다.   
+> 타입에서 프로토콜의 요구사항을 충족시키려면 프로토콜이 제시하는 청사진의 기능을 모두 구현해야 합니다.   
+> 즉, 프로토콜은 기능을 정의하고 제시 할 뿐이지 스스로 기능을 구현하지는 않습니다.
+
+### 2. 정의
+```
+protocol 프로토콜 이름 {
+/* 정의부 */
+}
+```
+### 3. 구현
+```
+protocol Talkable {
+    
+    //프로퍼티 요구
+    var topic: String { get set}
+    var language: String {get}
+    
+    //메서드 요구
+    func talk()
+    
+    
+    //이니셜라이저 요구
+    init(topic: String, language: String)
+}
+```
+### 4. 프로토콜 채택 및 준수
+```
+// Person 구조체는 Talkable 프로토콜을 채택했습니다
+struct Person: Talkable {
+    // 프로퍼티 요구 준수
+    var topic: String
+    let language: String
+    
+    // 읽기전용 프로퍼티 요구는 연산 프로퍼티로 대체가 가능합니다
+//    var language: String { return "한국어" }
+    
+    // 물론 읽기, 쓰기 프로퍼티도 연산 프로퍼티로 대체할 수 있습니다
+//    var subject: String = ""
+//    var topic: String {
+//        set {
+//            self.subject = newValue
+//        }
+//        get {
+//            return self.subject
+//        }
+//    }
+    
+    // 메서드 요구 준수    
+    func talk() {
+        print("\(topic)에 대해 \(language)로 말합니다")
+    }
+
+    // 이니셜라이저 요구 준수    
+    init(topic: String, language: String) {
+        self.topic = topic
+        self.language = language
+    }
+}
+```
+> 프로퍼티 요구는 다양한 방법으로 해석, 구현 할 수. 있습니다. 
+```
+struct Person: Talkable {
+    var subject: String = ""
+
+    // 프로퍼티 요구는 연산 프로퍼티로 대체가 가능합니다
+    var topic: String {
+        set {
+            self.subject = newValue
+        }
+        get {
+            return self.subject
+        }
+    }
+    
+    var language: String { return "한국어" }
+    
+    func talk() {
+        print("\(topic)에 대해 \(language)로 말합니다")
+    }
+    
+    init(topic: String, language: String) {
+        self.topic = topic
+    }
+}
+```
+### 5. 프로토콜 상속
+> 프로토콜은 하나 이상의 프로토콜을 상속받아 기존 프로토콜의 요구사항보다 더 많은 요구사항을 추가할 수 있습니다.
+> 프로토콜 상속 문법은 클래스의 상속 문법과 유사하지만, 프로토콜은 클래스와 다르게 다중상속이 가능합니다. 
+```
+protocol 프로토콜 이름: 부모 푸로토콜 이름 목록{
+/* 정의부 */
+}
+```
+```
+protocol Readable {
+    func read()
+}
+protocol Writeable {
+    func write()
+}
+protocol ReadSpeakable: Readable {
+    func speak()
+}
+protocol ReadWriteSpeakable: Readable, Writeable {
+    func speak()
+}
+
+struct SomeType: ReadWriteSpeakable {
+    func read() {
+        print("Read")
+    }
+    func write() {
+        print("Write")
+    }
+    func speak() {
+        print("Speak")
+    }
+}
+```
+
+> 클래스에서 상속과 프로토콜 채택을 동시에 하려면 상속받으려는 클래스를 먼저 명시하고 그 뒤에 채택할 프로토콜 목록을 작성합니다.
+```
+class SuperClass: Readable {
+    func read() { }
+}
+
+class SubClass: SuperClass, Writeable, ReadSpeakable {
+    func write() { }
+    func speak() { }
+}
+```
+### 6. 프로토콜 준수 확인
+> is, as 연산자를 사용해서 인스턴스가 특정 프로토콜을 준수하는지 확인할 수 있습니다. 
+```
+let sup: SuperClass = SuperClass()
+let sub: SubClass = SubClass()
+
+var someAny: Any = sup
+someAny is Readable // true
+someAny is ReadSpeakable // false
+
+someAny = sub
+someAny is Readable // true
+someAny is ReadSpeakable // true
+
+someAny = sup
+
+if let someReadable: Readable = someAny as? Readable {
+    someReadable.read()
+} // read
+
+if let someReadSpeakable: ReadSpeakable = someAny as? ReadSpeakable {
+    someReadSpeakable.speak()
+} // 동작하지 않음
+
+someAny = sub
+
+if let someReadable: Readable = someAny as? Readable {
+    someReadable.read()
+} // read
+```
+
+<br>
+
+## 익스텐션
+
+### 1. 익스텐션
+> 익스텐션(Extension)은 스위프트의 강력한 기능 중 하난입니다.  
+> 익스텐션은 구조체, 클래스, 열거형, 프로토콜 타입에 새로운 기능을 추가 할 수 있는 기능입니다.  
+> 기능을 추가하려는 타입의 구현된 소스 코드를 알지 못하거나 볼 수 없다 해도, 타입만 알고 있다면 그 타입의 기능을 확장할 수도 있습니다.
+
+<<스위프트의 익스텐션이 타입에 추가할 수 있는 기능>>
+
+> 연산 타입 프로퍼티 / 연산 인스턴스 프로퍼티
+> 타입 메서드 / 인스턴스 메서드  
+> 이니셜라이저  
+> 중첩 타입
+> 특정 프로토콜을 준수할 수 있도록 기능 추가
+
+**익스텐션은 타입에 새로운 기능을 추가할 수는 있지만, 기존에 존재하는 기능을 재정의할 수는 없습니다. 
+
+<<클래스의 상속과 익스텐션 비교>>
+> 클래스의 상속은 클래스 타입에서만 가능하지만 익스텐션은 구조체, 클래스, 프로토콜 등에 적용이 가능합니다. 
+> 또 클래스의 상속은 특정 타입을 물려받아 하나의 새로운 타입을 정의하고 추가 기능을 구현하는 수직 확장이지만, 익스텐션은 기존의 타입에 기능을 추가하는 수평 확장입니다.
+> 또, 상속을 받으면 기존 기능을 재정의할 수 있지만, 익스텐션은 재정의할 수 없다는 것도 큰 차이 중 하나입니다.  
+> 상황과 용도에 맞게 상속과 익스텐션을 선택하여 사용하면 됩니다. 
+
+<<익스텐션 활용>>
+> 익스텐션을 사요아는 대신 원래 타입을 정의한 소스에 기능을 추가하는 방법도 있겠지만, 외부 라이브러리나 프레임워크를 가져다 썼다면 원본 소스를 수정하지 못합니다.
+> 이처럼 외부에서 가져온 타입에 내가 원하는 기능을 추가하고자 할 때 익스텐션을 사용합니다.  
+> 따로 상속을 받지 않아도 되며, 구조체와 열거형에도 기능을 추가할 수 있으므로 익스텐션은 매우 편리한 기능입니다.
+
+> 익스텐션은 모든 타입에 적용할 수 ㅇㅆ습니다. 모든 타입이라 함은 구조체, 열거형, 클래스, 프로토콜, 제네릭 타입 등을 뜻합니다.  
+> 즉, 익스텐션을 통해 모든 타입에 연산 프로퍼티, 메서드, 이니셜라이저, 서브스크립트, 중첩 데이터 타입 등을 추가할 수 있습니다.   
+> 더불어 익스텐션은 프로토콜과 함께 사용하면 굉장히 강력한 기능을 선사합니다. 
+> 이부분과 관련해 프로토콜 중심 프로그래밍(Protocol Oriented Programming)에 대해 더 알아보는 것을 추천합니다.
+
+### 2. 정의
+ ```
+ extension 확장할 타입 이름 {
+ /* 타입에 추가될 새로운 기능 구현 */
+ }
+ ```
+> 익스텐션은 기존에 존재하는 타입이 추가적으로 다른 프로토콜을 채택할 수 있도록 확장할 수도 있습니다.  
+> 이런 경우에는 클래스나 구조체에서 사용하던 것과 똑같은 방법으로 프로토콜 이름을 나열해줍니다. 
+
+```
+extension 확장할 타입 이름: 프로토콜1, 프로토콜2, 프로토콜3 ... {
+/* 프로토콜 요구사항 구현 */
+}
+```
+### 3. 구현
+
+
+
+
+
+
+
+
+
+
 
 
