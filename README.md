@@ -6,14 +6,14 @@
 > 이해한만큼 직접 작성하여 정리해두는 저장소 입니다. ✍️☺️
 
 
-## [Diary](https://github.com/JIINHEO/TIL/tree/main/Diary)
+* **[Diary](https://github.com/JIINHEO/TIL/tree/main/Diary)**
 
-## [Swift](https://github.com/JIINHEO/TIL/tree/main/Swift)
+* **[Swift](https://github.com/JIINHEO/TIL/tree/main/Swift)**
 
-## iOS
+* **[iOS](https://github.com/JIINHEO/TIL/tree/main/iOS)**
 
-## Algorithm
+* **Algorithm**
 
-## Data structure
+* **Data structure**
 
-## Database
+* **Database**
