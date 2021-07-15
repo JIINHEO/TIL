@@ -6,9 +6,9 @@
 > 이해한만큼 직접 작성하여 정리해두는 저장소 입니다. ✍️☺️
 
 
-## [Diary](#diary)
+## [Diary](https://github.com/JIINHEO/TIL/tree/main/Diary)
 
-## [Swift](#swift)
+## [Swift](https://github.com/JIINHEO/TIL/tree/main/Swift)
 
 ## iOS
 
