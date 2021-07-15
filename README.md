@@ -6,9 +6,9 @@
 > 이해한만큼 직접 작성하여 정리해두는 저장소 입니다. ✍️☺️
 
 
-## Diary
+## [Diary](#diary)
 
-## swift
+## [Swift](#swift)
 
 ## iOS
 
