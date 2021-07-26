@@ -1,7 +1,12 @@
 # Swift
 
-> 학습 내용은 **야곰님의 iOS 프로그래밍을 위한 스위프트 기초 강의, 꼼꼼한 재은 씨의 Swift 시리즈** 를 바탕으로 작성되었습니다. 
-> <https://www.boostcourse.org/mo122/joinLectures/38564>
+> 참고   
+> iOS 프로그래밍을 위한 스위프트 기초 강의 <https://www.boostcourse.org/mo122/joinLectures/38564>   
+> 꼼꼼한 재은 씨의 Swift 시리즈 <https://blog.naver.com/sqlpro>   
+> <https://swift.org>   
+
+
+
 
 # 스위프트 소개
 
