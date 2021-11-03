@@ -12,7 +12,7 @@
 
 * **[iOS](https://github.com/JIINHEO/TIL/tree/main/iOS)**
 
-* **GitHub**
+* **[GitHub](https://github.com/JIINHEO/TIL/tree/main/GitHub)**
 
 * **Algorithm**
 
