@@ -54,11 +54,29 @@ UIKit 앱의 구조는 기본적으로 MVC패턴을 사용한다.
 2. Storyboard를 통해 전환하는 방식
 
 - View Controller의 View위에 다른 View를 가져와 바꿔치기(메모리 누수 위험, 사용 x)
-- View Controller에서 다른 View Controller를 호출하여 전환하기 (presentation 방식이라고도 함
+- View Controller에서 다른 View Controller를 호출하여 전환하기 (presentation 방식이라고도 함)   
+```
+func present(_ viewControllerToPresent: UIViewController, 
+    animated flag: Bool, 
+  completion: (() -> Void)? = nil)
+  
+func dismiss(animated flag: Bool, 
+  completion: (() -> Void)? = nil)
+  ```
 - Navigation Controller를 사용하여 화면 전환하기
-- 화면 전환용 객체 세그웨이(Segueway)를 사용하여 화면 전환하기
+```
+func pushViewController(_ viewController: UIViewController, animated: Bool)
 
-
+func popViewController(animated: Bool) -> UIViewController?
+```
+- 화면 전환용 객체 세그웨이(Segueway)를 사용하여 화면 전환하기    
+Manul Segueway : 출발점이 뷰컨트롤러 자체일 경우   
+Action Segueway : 출발점이 버튼, 셀 등인 경우    
+- Show
+- Show Detail
+- Present Modally
+- Present As Popover(아이패드에서 사용)
+- Custom
 
 
 
