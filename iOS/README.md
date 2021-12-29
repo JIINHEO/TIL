@@ -103,14 +103,21 @@ Action Segueway : 출발점이 버튼, 셀 등인 경우
     - 섹션에 header와 footer가 있다면 이것들의 크기를 지정한다.   
     - 레이아웃의 스크롤 방향을 설정한다.   
 
-```URLSession```   
+```HTTP: Hyper Text Transfer Protocol``` Hyper Text를 전송하기 위한 프로토콜   
 
+```Http Method```   
+GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS, CONNECT, TRACE   
 
+```Http Status```
+- 100.. Informational: 요청 정보를 처리중   
+- 200.. Success: 요청을 정상적으로 처리함
+- 300.. Redirection: 요청을 완료하기 위해 추가 동작 필요
+- 400.. Client Error: 서버가 요청을 이해하지 못함
+- 500.. Server Error: 서버가 요청 처리 실패함
 
-
-
-
-
+```URLSession```
+특정한 url을 이용하여 데이터를 다운로드하고 업로드하기 위한 API이다. 
+request와 response를 기본구조로 가지고 있으며, URLSessionConfiguration 을 통해 생성할 수 있고 생성된 URLSessiong을 통해 한 개 이상의  URLSessionTask를 생성할 수 있다.
 
 
 
