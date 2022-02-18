@@ -4,15 +4,16 @@
 > 오늘 배운, 알게 된, 학습한 내용 정리하거나    
 > 자유롭게 느낀 점을 적어두는 저장소 입니다. ✍️☺️
 
+## **[Diary](tree/main/Diary)**
+## **[Swift](tree/main/Swift)**
 
-##  **[Diary](https://github.com/JIINHEO/TIL/tree/main/Diary)**
-## **[Swift](https://github.com/JIINHEO/TIL/tree/main/Swift)**
+## **[iOS](tree/main/iOS)**
 
-## **[iOS](https://github.com/JIINHEO/TIL/tree/main/iOS)**
+## **[GitHub](tree/main/GitHub)**
 
-## **[GitHub](https://github.com/JIINHEO/TIL/tree/main/GitHub)**
+ - [git checkout 브랜치 변경 오류 (git restore 이용)](issues/1)
 
- - [git checkout 브랜치 변경 오류 (git restore 이용)](https://github.com/JIINHEO/TIL/issues/1)
+## **[CleanCode](CleanCode.md)**
 
 ## **Algorithm**
 
