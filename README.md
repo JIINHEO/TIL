@@ -11,7 +11,8 @@
 
 ## **[GitHub](/GitHub)**
 
- - [git checkout 브랜치 변경 오류 (git restore 이용)](issues/1)
+ - [git checkout 브랜치 변경 오류 (git restore 이용)](https://github.com/JIINHEO/TIL/issues/1)
+ - [[CocoaPods] could not find compatible versions for pod "FirebaseCore" 설치 오류](https://github.com/JIINHEO/TIL/issues/2)
 
 ## **[CleanCode](CleanCode.md)**
 
