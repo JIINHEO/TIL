@@ -2141,7 +2141,45 @@ let StringFromInt: String = String(int: 100) //100
 let StringFromDouble: String = String (double: 100.0)//100.0
 ```
 
+---
 
+
+# Method Dispath : 동적(dynamic) 디스패치 / 정적(static) 디스패치
+
+---
+
+swift는 가능할 때마다 Swift 런타임을 사용
+
+**Objective-c는 동적 디스패치**만을 사용, Swift는 다른 선택이 없으면, 동적 디스패치를 선택할 뿐 … 
+
+Objective-c는 클래스의 메소드나 프로퍼티를 호출할 때, 해당 객체에 “메세지”를 보내는 방식으로 구현되어 있음  그럼 그 클래스한테 “메소드 실행”이라는 메세지를 보내는데
+
+메세지를 받은 객체는 그 메소드가 구현되어 있는 곳으로 가서 비로소 그 메소드를 실행하는것 (런타임에 일어나는것)
+
+(매번 실행 시 객체가 메세지 받고 → 실행하고 → .. 성능 저하)
+
+그럼 컴파일타임에 해당 메소드의 실제 코드의 위치를 알면 그 메소드가 어딨는지 찾을 필요도 없고, 바로 그 주소로 점프해서 실행하면 되겠지? → 이게 **정적 디스패치** 
+
+[Increasing Performance by Reducing Dynamic Dispatch - Swift Blog](https://developer.apple.com/swift/blog/?id=27)
+
+그래서 swift에서 dynamic var~ dynamic func~ 는 Swift 런타임 말고 Objective-C 런타임 쓸게~ 이 말
+
+그럼 동적 디스패치는? 
+
+코어데이터나 KVO와 같은 것들은 동적인 Objective-C 런타임 덕분에 가능! 
+
+그리고 오직 class의 멤버에만 사용될 수 있음! 그.. 상속이 가능하니까 슈퍼 클래스의 메소드를 재정의(override)하는 경우, 동적 디스패치는 메소드의 구현을 호출해야하는지, 하위 클래스의 메소드는 또 부모클래스의 메소드를 호출해야하는지 파악
+
+- Static Dispatch
+    - 가장 빠른 방법! 컴파일 타임에 컴파일러가 어떤 메소드를 실행할지 주소값을 알고 있기 때문에, 별도의 과정이 필요없고 inline으로 빠르게 수행
+- Dynamic Dispatch
+    - 보통 많은 OOP를 기반으로 둔 언어가 이 Dispatch 방법을 사용하고있음, 런타임중에 결정되는만큼 오버헤드가 약간은 발생하고 속도가 느린 방법
+    - 근데 왜 사용?
+    - 바로 다형성(override)할 수 있고 그대로 차용해서 사용할 수 있음 (표현력이 는다! )
+    
+    메소드들도 포인터로 주소값을 가지고 있다고해요 그게 **V-Table !** 이라고 합니다 
+    
+- 명시적으로 Static Dispatch를 만들어 주려면 static, final을 붙여주면된다!
 
 
 
